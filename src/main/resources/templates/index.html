@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::section})}">
+<head>
+    <meta charset="UTF-8" />
+    <title>index</title>
+</head>
+<body>
+    <section>
+    
+    Start slider
+    <div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/img/ecom1.png" class="d-block w-100" alt="..." height="350px">
+    </div>
+    <div class="carousel-item">
+      <img src="img/ecom2.jpg" class="d-block w-100" alt="..." height="350px">
+    </div>
+    <div class="carousel-item">
+      <img src="img/ecom3.jpg" class="d-block w-100" alt="..." height="350px">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+    
+    
+    <div class="container">
+    <div class="row">
+    <p class="text-center fs-4">Category</p>
+    <div class="col-md-2" th:each="c:${category}">
+    <div  class="card rounded-circle shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+    <div  class="card-body text-center">
+    <a class="text-decoration-none" th:href="@{'/products?category='+${c.name}}"><img  th:src="@{'img/category_img/'+${c.imgName}}" width="65%" height="140px" alt="" /><br />
+    <p>[[${c.name}]]</p></a>
+    </div>
+    </div></div>
+    
+    
+    
+    </div>
+    </div>
+    
+    <div class="container-fluid bg-light p-3">
+    <div class="row">
+    <p class="text-center fs-4">Latest Product</p>
+    
+    
+    <div class="col-md-3" th:each="p:${products}">
+    <div class="card ">
+    <div class="card-body text-center">
+   <a th:href="@{'/product/'+${p.id}}" class="text-decoration-none" > <img th:src="@{'img/product_img/'+${p.image}}" width="65%" height="140px" alt="" /><br />
+    <p class="text-center">[[${p.title}]]</p></a>
+    </div>
+    </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    </div>
+    
+    </div>
+    
+    end latest product module
+    </section>
+    
+</body>
+</html>
+
+
+
+
+
+
+ 
+ 
+ 

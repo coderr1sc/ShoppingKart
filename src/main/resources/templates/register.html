@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+    <section>
+        <div class="container mt-5 p-5">
+            <div class="row">
+                <div class="col-md-5 p-5">
+                    <img alt="" src="img/ecom.png" width="100%" height="400px">
+                </div>
+                <div class="col-md-7 p-2">
+                    <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
+                        <div class="card-header text-center">
+                            <p class="fs-4 text-center">Register</p>
+                            <th:block th:if="${session.succMsg}">
+                                <p class="text-success fw-bold">[[${session.succMsg}]]</p>
+                                <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+                            </th:block>
+
+                            <th:block th:if="${session.errorMsg}">
+                                <p class="text-danger fw-bold">[[${session.errorMsg}]]</p>
+                                <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+                            </th:block>
+                        </div>
+                        <div class="card-body">
+                            <form th:action="@{/saveUser}" th:object="${userDtls}" enctype="multipart/form-data" id="userRegister" novalidate method="post">
+    
+    <div class="row">
+        <div class="col">
+            <label class="form-label">Full Name</label> 
+            <input class="form-control" th:field="*{name}" type="text">
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></p>
+        </div>
+
+        <div class="col">
+            <label class="form-label">Mobile Number</label> 
+            <input class="form-control" th:field="*{mobileNumber}" type="number">
+            <p th:if="${#fields.hasErrors('mobileNumber')}" th:errors="*{mobileNumber}" class="text-danger"></p>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Email</label> 
+        <input th:field="*{email}" class="form-control" type="email">
+        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></p>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label class="form-label">Address</label> 
+            <input class="form-control" th:field="*{address}" type="text">
+            <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="text-danger"></p>
+        </div>
+
+        <div class="col">
+            <label class="form-label">City</label> 
+            <input class="form-control" th:field="*{city}" type="text">
+            <p th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="text-danger"></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label class="form-label">State</label> 
+            <input class="form-control" th:field="*{state}" type="text">
+            <p th:if="${#fields.hasErrors('state')}" th:errors="*{state}" class="text-danger"></p>
+        </div>
+
+        <div class="col">
+            <label class="form-label">Pincode</label> 
+            <input class="form-control" th:field="*{pincode}" type="number">
+            <p th:if="${#fields.hasErrors('pincode')}" th:errors="*{pincode}" class="text-danger"></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label class="form-label">Password</label> 
+            <input class="form-control" th:field="*{password}" type="password">
+            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></p>
+        </div>
+
+        <div class="col">
+            <label class="form-label">Confirm Password</label> 
+            <input class="form-control" name="confirmpassword" type="password">
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Profile Image</label> 
+        <input class="form-control" name="img" type="file">
+        <p th:if="${#fields.hasErrors('profileImage')}" th:errors="*{profileImage}" class="text-danger"></p>
+    </div>
+
+    <button type="submit" class="btn bg-primary text-white col-md-12">Register</button>
+</form>
+                        </div>
+
+                        <div class="card-footer text-center">
+
+                            have an account ? <a href="/login" class="text-decoration-none">Login
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</body>
+</html>
