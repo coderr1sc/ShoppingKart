@@ -78,8 +78,11 @@ public class HomeController {
 		
 	}
 	
-	
-	
+	@GetMapping("/")
+	public String home() {
+
+		return "redirect:/home";
+	}
 	@GetMapping("/home")
 	public String index(Model m) {
 		
